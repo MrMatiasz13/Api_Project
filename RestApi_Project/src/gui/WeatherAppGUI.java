@@ -15,6 +15,10 @@ public class WeatherAppGUI extends JFrame {
     private JTextField searchField;
     private JButton searchBtn;
 
+    private JLabel weatherImage;
+    private JLabel temperatureLabel;
+
+
 
     public WeatherAppGUI(){
 
@@ -53,14 +57,31 @@ public class WeatherAppGUI extends JFrame {
         searchBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         searchBtn.setFocusable(false);
 
-
         springLayout.putConstraint(SpringLayout.WEST, searchBtn, 300, SpringLayout.WEST, panel);
         springLayout.putConstraint(SpringLayout.NORTH,searchBtn, 5, SpringLayout.NORTH, panel);
 
         panel.add(searchField);
         panel.add(searchBtn);
+
+        // WEATHER
+        weatherImage = new JLabel(loadImage("src/assets/cloudy.png"));
+
+        springLayout.putConstraint(SpringLayout.WEST, weatherImage, 80, SpringLayout.WEST, panel);
+        springLayout.putConstraint(SpringLayout.NORTH, weatherImage, 100, SpringLayout.NORTH, panel);
+
+        temperatureLabel = new JLabel("10 C");
+        temperatureLabel.setFont(new Font("Dialog", Font.BOLD, 32));
+
+        springLayout.putConstraint(SpringLayout.WEST, temperatureLabel, 160, SpringLayout.WEST, panel);
+        springLayout.putConstraint(SpringLayout.NORTH, temperatureLabel, 300, SpringLayout.NORTH, panel);
+
+        panel.add(weatherImage);
+        panel.add(temperatureLabel);
+
     }
 
+
+    // LOAD IMAGE SCRIPT
     private ImageIcon loadImage(String resoursePath){
         try{
             BufferedImage image = ImageIO.read(new File(resoursePath));
